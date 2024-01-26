@@ -1,4 +1,4 @@
-This is the sample project of react which includes
+This is the sample project of next js which includes
 
 Routing tailwind css
 
