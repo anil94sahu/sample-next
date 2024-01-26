@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Dashboard = () => {
   return (
     <div className="w-5/5 h-3/5 mt-20 flex justify-center items-center">
