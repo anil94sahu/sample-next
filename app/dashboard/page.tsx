@@ -1,9 +1,15 @@
 'use client'
-import { useAppSelector } from "@/src/redux/store";
+import { deleteById } from "@/src/redux/dashboardSlice";
+import { useAppDispatch, useAppSelector } from "@/src/redux/store";
 
 const Dashboard = () => {
   const dashboardState = useAppSelector((state) => state.dashboard.dashboard);
-  console.log(dashboardState);
+  const dispatch = useAppDispatch();
+
+  const deleteRow = (id) => {
+    console.log('deleteById', id);
+    dispatch(deleteById(id));
+  }
 
   return (
     <div className="w-5/5 h-3/5 mt-20 flex justify-center items-center">
@@ -25,6 +31,7 @@ const Dashboard = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only"> Edit </span>
+                
               </th>
             </tr>
           </thead>
@@ -47,7 +54,13 @@ const Dashboard = () => {
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       {" "}
-                      Edit{" "}
+                      Edit{" "} |
+                    </a>
+                    <a onClick={() => deleteRow(ele.key)}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      {" "}
+                      Delete{" "}
                     </a>
                   </td>
                 </tr>

@@ -29,7 +29,7 @@ export const dashboardSlice = createSlice({
       state.dashboardState = action.payload;
     },
     deleteById: (state, action: PayloadAction<boolean>) => {
-      state.dashboardState = action.payload;
+      state.dashboard = state.dashboard.filter(ele => ele.key !== action.payload);
     },
   },
 });
