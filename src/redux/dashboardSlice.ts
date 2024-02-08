@@ -23,10 +23,19 @@ export const dashboardSlice = createSlice({
     create: (state, action: PayloadAction<IDashboardState>) => {
       action.payload['key'] = state.dashboard.length + 1;
       state.dashboard.push(action.payload);
+    },
+    edit: (state, action: PayloadAction<IDashboardState>) => {
+
     } 
     ,
-    update: (state, action: PayloadAction<boolean>) => {
-      state.dashboardState = action.payload;
+    update: (state, action: PayloadAction<key, data>) => {
+      const index = state.dashboard.findIndex(ele => ele.key ===action.payload.key);    
+      const newDashboard = [...state.dashboard]; 
+      newDashboard[index] = action.payload;                                                                 
+      return { 
+        ...state, //copying the orignal state
+        dashboard: newDashboard, //reassingning todos to new array
+       }
     },
     deleteById: (state, action: PayloadAction<boolean>) => {
       state.dashboard = state.dashboard.filter(ele => ele.key !== action.payload);

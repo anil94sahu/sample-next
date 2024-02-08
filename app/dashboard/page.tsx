@@ -11,6 +11,10 @@ const Dashboard = () => {
     dispatch(deleteById(id));
   }
 
+  const editForm = (ele) => {
+    console.log(ele);
+  }
+
   return (
     <div className="w-5/5 h-3/5 mt-20 flex justify-center items-center">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -49,8 +53,7 @@ const Dashboard = () => {
                   <td className="px-6 py-4">{ele.category}</td>
                   <td className="px-6 py-4">{ele.price}</td>
                   <td className="px-6 py-4 text-right">
-                    <a
-                      href="#"
+                    <a onClick={()=> editForm(ele)}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       {" "}

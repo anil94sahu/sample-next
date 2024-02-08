@@ -18,8 +18,6 @@ const Create = () => {
   const router = useRouter();
   const dashboardState = useAppSelector((state) => state.dashboard);
   const dispatch = useAppDispatch();
-  console.log(dashboardState);
-  
 
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
