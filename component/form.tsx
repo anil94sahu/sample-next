@@ -14,7 +14,7 @@ interface IFormInput {
   price:number
 }
 
-const Create = () => {
+const Form = () => {
   const router = useRouter();
   const dashboardState = useAppSelector((state) => state.dashboard);
   const dispatch = useAppDispatch();
@@ -110,4 +110,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Form;
