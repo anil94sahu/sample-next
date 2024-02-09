@@ -1,10 +1,12 @@
 'use client'
 import { deleteById } from "@/src/redux/dashboardSlice";
 import { useAppDispatch, useAppSelector } from "@/src/redux/store";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const dashboardState = useAppSelector((state) => state.dashboard.dashboard);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const deleteRow = (id) => {
     console.log('deleteById', id);
@@ -13,6 +15,9 @@ const Dashboard = () => {
 
   const editForm = (ele) => {
     console.log(ele);
+    router.push(`/update/${ele.key}`)
+    
+
   }
 
   return (

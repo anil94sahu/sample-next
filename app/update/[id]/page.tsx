@@ -4,7 +4,7 @@ import React from 'react'
 import { create, update } from "@/src/redux/dashboardSlice";
 import { useAppDispatch, useAppSelector } from "@/src/redux/store";
 import { createAction } from "@reduxjs/toolkit";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import dashboardData from '@/src/constant/dashboardData';
 
@@ -17,10 +17,13 @@ interface IFormInput {
 
 const Update = () => {
   const router = useRouter();
-  const dashboardState = useAppSelector((state) => state.dashboard);
+  const params = useParams();
+  
+  const dashboardState = useAppSelector((state) => state.dashboard.dashboard);
   const dispatch = useAppDispatch();
+  const defaultValues = dashboardState.find(ele => ele.key === parseInt(params.id));
+  const { register, handleSubmit } = useForm<IFormInput>({defaultValues:  defaultValues});
 
-  const { register, handleSubmit } = useForm<IFormInput>({defaultValues:  dashboardData[1]});
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     dispatch(update(data));
     router.push('/dashboard');
