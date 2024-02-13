@@ -12,7 +12,8 @@ interface IFormInput {
   productName: string;
   color: string;
   category: string;
-  price:number
+  price:number;
+  permission:any;
 }
 
 const Update = () => {
@@ -100,6 +101,21 @@ const Update = () => {
           </label>
         </div>
         
+        <div className="relative z-0 w-full mb-5 group flex gap-2">
+          <div class="flex items-center">
+            <input  {...register("permission.view")} id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">View</label>
+          </div>
+          <div class="flex items-center">
+              <input {...register("permission.edit")} id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Update</label>
+          </div>
+          <div class="flex items-center">
+              <input {...register("permission.delete")}  id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delete</label>
+          </div>
+        </div>
+
         <button
           type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

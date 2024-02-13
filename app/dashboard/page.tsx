@@ -39,7 +39,7 @@ const Dashboard = () => {
                 Price
               </th>
               <th scope="col" className="px-6 py-3">
-                <span className="sr-only"> Edit </span>
+                Actions
                 
               </th>
             </tr>
@@ -58,18 +58,23 @@ const Dashboard = () => {
                   <td className="px-6 py-4">{ele.category}</td>
                   <td className="px-6 py-4">{ele.price}</td>
                   <td className="px-6 py-4 text-right">
-                    <a onClick={()=> editForm(ele)}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    {
+                      ele?.permission?.edit? <a onClick={()=> editForm(ele)}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:cursor-pointer"
                     >
                       {" "}
                       Edit{" "} |
-                    </a>
-                    <a onClick={() => deleteRow(ele.key)}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    </a> : null
+                    }
+                    {
+                      ele?.permission?.delete? <a onClick={() => deleteRow(ele.key)}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:cursor-pointer"
                     >
                       {" "}
                       Delete{" "}
-                    </a>
+                    </a> : null
+                    }
+                    
                   </td>
                 </tr>
               ))}

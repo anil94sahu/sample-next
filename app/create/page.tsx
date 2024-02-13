@@ -11,7 +11,9 @@ interface IFormInput {
   productName: string;
   color: string;
   category: string;
-  price:number
+  price: number;
+  role: string;
+  permission:any;
 }
 
 const Create = () => {
@@ -21,8 +23,10 @@ const Create = () => {
 
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data);
+    
     dispatch(create(data));
-    router.push('/dashboard');
+    router.push("/dashboard");
   };
 
   return (
@@ -76,7 +80,7 @@ const Create = () => {
             for="category"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-           Category
+            Category
           </label>
         </div>
         <div class="relative z-0 w-full mb-5 group">
@@ -93,10 +97,25 @@ const Create = () => {
             for="price"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-           Price
+            Price
           </label>
         </div>
-        
+
+        <div className="relative z-0 w-full mb-5 group flex gap-2">
+          <div class="flex items-center">
+            <input  {...register("permission.view")} id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">View</label>
+          </div>
+          <div class="flex items-center">
+              <input {...register("permission.edit")} id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Update</label>
+          </div>
+          <div class="flex items-center">
+              <input {...register("permission.delete")}  id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delete</label>
+          </div>
+        </div>
+
         <button
           type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
